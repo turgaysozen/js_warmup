@@ -47,7 +47,6 @@ getNumber = (cb) => {
 // )
 
 // promie
-
 getNumberPromise = () => {
     return new Promise((resolve, reject) => {
         getNumber(resolve)
@@ -58,3 +57,33 @@ const promise = getNumberPromise()
 promise.then(n => {
     console.log(n)
 })
+
+
+// this keyword and bind 
+const person = {
+    name: "Turgay",
+    sayName: function(age) {
+        console.log(this.name, age)
+    }
+}
+
+const personName = person.sayName.bind(person)
+personName(30)
+
+person.sayName(30)
+
+// Prototype
+
+const vehicle  = {
+    drive: function(make) {
+        console.log('The', make, 'is driving')
+    }
+}
+
+const car = {
+    model: '2021'
+}
+
+Object.setPrototypeOf(car, vehicle)
+car.drive('BMW')
+console.log(car.model)
